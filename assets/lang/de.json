@@ -1,0 +1,13 @@
+
+{
+    "dashboard": "Dashboard",
+    "trade": "Handel",
+    "portfolio": "Portfolio",
+    "history": "Verlauf",
+    "transfers": "Überweisungen",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "security": "Sicherheit",
+    "support": "Support",
+    "logout": "Abmelden"
+}

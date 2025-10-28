@@ -1,0 +1,13 @@
+
+{
+    "dashboard": "仪表板",
+    "trade": "交易",
+    "portfolio": "投资组合",
+    "history": "历史",
+    "transfers": "转账",
+    "profile": "个人资料",
+    "settings": "设置",
+    "security": "安全",
+    "support": "支持",
+    "logout": "退出登录"
+}

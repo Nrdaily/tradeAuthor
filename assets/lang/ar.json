@@ -1,0 +1,13 @@
+
+{
+    "dashboard": "لوحة التحكم",
+    "trade": "تداول",
+    "portfolio": "محفظة",
+    "history": "السجل",
+    "transfers": "التحويلات",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "security": "الأمان",
+    "support": "الدعم",
+    "logout": "تسجيل الخروج"
+}
