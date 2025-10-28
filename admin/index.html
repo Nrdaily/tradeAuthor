@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptotrade pro Admin - Submission Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-container" style="display: none;">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-coins"></i>
+                <span>Cryptotrade pro Admin</span>
+            </div>
+            
+            <div class="admin-nav">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Submissions</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+            
+            <div class="nav-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-main">
+            <div class="admin-header">
+                <h1 class="admin-title">Submission Dashboard</h1>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search submissions...">
+                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon total-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Total Submissions</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon pending-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Pending Review</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon approved-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">Approved</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon rejected-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Rejected</div>
+                </div>
+            </div>
+            
+            <!-- Submissions Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Recent Submissions</h2>
+                    
+                    <div class="card-actions">
+                        <select class="filter-select">
+                            <option>All Statuses</option>
+                            <option>Pending</option>
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>john.doe@example.com</td>
+                                <td>Payment Request</td>
+                                <td>Oct 15, 2023</td>
+                                <td>$650.00</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn btn-approve">Approve</button>
+                                    <button class="action-btn btn-reject">Reject</button>
+                                    <button class="action-btn btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>sara.smith@example.com</td>
+                                <td>Buy Order</td>
+                                <td>Oct 14, 2023</td>
+                                <td>$1,250.00</td>
+                                <td><span class="status-badge status-approved">Approved</span></td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>mike.jones@example.com</td>
+                                <td>Withdrawal</td>
+                                <td>Oct 14, 2023</td>
+                                <td>$850.00</td>
+                                <td><span class="status-badge status-rejected">Rejected</span></td>
+                                <td>
+                                    <button class="action-btn btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>emma.wilson@example.com</td>
+                                <td>Payment Request</td>
+                                <td>Oct 13, 2023</td>
+                                <td>$2,350.00</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn btn-approve">Approve</button>
+                                    <button class="action-btn btn-reject">Reject</button>
+                                    <button class="action-btn btn-view">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>david.brown@example.com</td>
+                                <td>Buy Order</td>
+                                <td>Oct 13, 2023</td>
+                                <td>$3,150.00</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn btn-approve">Approve</button>
+                                    <button class="action-btn btn-reject">Reject</button>
+                                    <button class="action-btn btn-view">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submission Detail Modal -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <h2>Submission Details</h2>
+                <p>Review all details of this submission</p>
+            </div>
+            
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">User</div>
+                    <div class="detail-value">john.doe@example.com</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Submission Type</div>
+                    <div class="detail-value">Payment Request</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Date Submitted</div>
+                    <div class="detail-value">October 15, 2023 14:32</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value"><span class="status-badge status-pending">Pending</span></div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Amount</div>
+                    <div class="detail-value">$650.00</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Cryptocurrency</div>
+                    <div class="detail-value">Bitcoin (BTC)</div>
+                </div>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-label">Recipient Address</div>
+                <div class="detail-value">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</div>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-label">Message</div>
+                <div class="detail-value">Payment for services rendered. Invoice #INV-2023-1045</div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn" style="background-color: var(--danger); color: white;">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // View submission details
+        document.querySelectorAll('.btn-view').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('detail-modal').classList.add('active');
+            });
+        });
+        
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('detail-modal').classList.remove('active');
+        });
+        
+        // Approve/Reject actions
+        document.querySelectorAll('.btn-approve').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const statusCell = row.querySelector('td:nth-child(5)');
+                statusCell.innerHTML = '<span class="status-badge status-approved">Approved</span>';
+                
+                // Remove action buttons
+                const actionsCell = row.querySelector('td:nth-child(6)');
+                actionsCell.innerHTML = '<button class="action-btn btn-view">View</button>';
+                
+                // Update stats
+                updateStats();
+            });
+        });
+        
+        document.querySelectorAll('.btn-reject').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const statusCell = row.querySelector('td:nth-child(5)');
+                statusCell.innerHTML = '<span class="status-badge status-rejected">Rejected</span>';
+                
+                // Remove action buttons
+                const actionsCell = row.querySelector('td:nth-child(6)');
+                actionsCell.innerHTML = '<button class="action-btn btn-view">View</button>';
+                
+                // Update stats
+                updateStats();
+            });
+        });
+        
+        // Update stats (simplified)
+        function updateStats() {
+            const pendingCount = document.querySelectorAll('.status-pending').length;
+            const approvedCount = document.querySelectorAll('.status-approved').length;
+            const rejectedCount = document.querySelectorAll('.status-rejected').length;
+            const totalCount = pendingCount + approvedCount + rejectedCount;
+            
+            document.querySelectorAll('.stat-value')[0].textContent = totalCount;
+            document.querySelectorAll('.stat-value')[1].textContent = pendingCount;
+            document.querySelectorAll('.stat-value')[2].textContent = approvedCount;
+            document.querySelectorAll('.stat-value')[3].textContent = rejectedCount;
+        }
+        
+        // Filter functionality
+        document.querySelector('.filter-select').addEventListener('change', function() {
+            const filterValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const status = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+                
+                if (filterValue === 'all statuses' || status === filterValue) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

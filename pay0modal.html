@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoBase - Payment Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #2962ff;
+            --primary-dark: #0039cb;
+            --secondary: #ff6d00;
+            --success: #00c853;
+            --danger: #ff1744;
+            --warning: #ffab00;
+            --info: #00b8d4;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --border: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .order-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            font-weight: 600;
+        }
+
+        .crypto-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .btc-icon {
+            background-color: #f7931a;
+        }
+
+        .eth-icon {
+            background-color: #627eea;
+        }
+
+        .usdt-icon {
+            background-color: #26a17b;
+        }
+
+        .usdc-icon {
+            background-color: #2775ca;
+        }
+
+        .shib-icon {
+            background-color: #e63c3c;
+        }
+
+        .crypto-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .input-error {
+            border-color: var(--danger);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn {
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-primary:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .security-icon {
+            color: var(--success);
+        }
+
+        .processing-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .processing-content {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .processing-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(41, 98, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-checkmark {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--success);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .order-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Complete Your Purchase</h1>
+            <p>Enter your payment details to complete the transaction</p>
+        </div>
+        
+        <div class="card">
+            <div class="crypto-info">
+                <div class="crypto-icon usdt-icon">T</div>
+                <div>
+                    <h3>Tether (USDT)</h3>
+                    <p>Price: $1.00</p>
+                </div>
+            </div>
+            
+            <div class="order-summary">
+                <div>
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span>You Pay</span>
+                        <span>$670.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>You Receive</span>
+                        <span>669.49 USDT</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Processing Fee</span>
+                        <span>$6.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total</span>
+                        <span>$676.00</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Payment Information</h3>
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="cardholder-name">Cardholder Name</label>
+                            <input type="text" id="cardholder-name" class="form-control" placeholder="John Doe">
+                            <div class="error-message" id="name-error">Please enter cardholder name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <div class="error-message" id="number-error">Please enter a valid card number</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY" maxlength="5">
+                                <div class="error-message" id="expiry-error">Please enter a valid expiry date</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" class="form-control" placeholder="123" maxlength="3">
+                                <div class="error-message" id="cvv-error">Please enter a valid CVV</div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="security-features">
+                <div class="security-item">
+                    <i class="fas fa-shield-alt security-icon"></i>
+                    <span>256-bit SSL Encryption</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-lock security-icon"></i>
+                    <span>PCI DSS Compliant</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-user-shield security-icon"></i>
+                    <span>Your data is secure</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-sync-alt security-icon"></i>
+                    <span>Instant Processing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="processing-overlay" id="processing-overlay">
+        <div class="processing-content">
+            <div class="processing-spinner" id="processing-spinner"></div>
+            <div class="success-checkmark" id="success-checkmark">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 id="processing-title">Processing Payment</h2>
+            <p id="processing-message">Please wait while we process your payment. Do not refresh the page.</p>
+            <div id="processing-steps">
+                <p>✓ Verifying card details</p>
+                <p>✓ Processing payment</p>
+                <p>⏳ Crediting your account</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Format card number with spaces
+        document.getElementById('card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 16) value = value.slice(0, 16);
+            
+            // Add spaces for better readability
+            value = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = value;
+        });
+        
+        // Format expiry date
+        document.getElementById('expiry-date').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.slice(0, 4);
+            
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+        
+        // Validate CVV (only numbers, max 3-4 digits)
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+        });
+        
+        // Form validation and submission
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Validate cardholder name
+            const cardholderName = document.getElementById('cardholder-name');
+            if (!cardholderName.value.trim()) {
+                cardholderName.classList.add('input-error');
+                document.getElementById('name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                cardholderName.classList.remove('input-error');
+                document.getElementById('name-error').style.display = 'none';
+            }
+            
+            // Validate card number (simple validation)
+            const cardNumber = document.getElementById('card-number');
+            const cardDigits = cardNumber.value.replace(/\D/g, '');
+            if (cardDigits.length < 16) {
+                cardNumber.classList.add('input-error');
+                document.getElementById('number-error').style.display = 'block';
+                isValid = false;
+            } else {
+                cardNumber.classList.remove('input-error');
+                document.getElementById('number-error').style.display = 'none';
+            }
+            
+            // Validate expiry date
+            const expiryDate = document.getElementById('expiry-date');
+            if (!/^\d{2}\/\d{2}$/.test(expiryDate.value)) {
+                expiryDate.classList.add('input-error');
+                document.getElementById('expiry-error').style.display = 'block';
+                isValid = false;
+            } else {
+                expiryDate.classList.remove('input-error');
+                document.getElementById('expiry-error').style.display = 'none';
+            }
+            
+            // Validate CVV
+            const cvv = document.getElementById('cvv');
+            if (cvv.value.length < 3) {
+                cvv.classList.add('input-error');
+                document.getElementById('cvv-error').style.display = 'block';
+                isValid = false;
+            } else {
+                cvv.classList.remove('input-error');
+                document.getElementById('cvv-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Show processing overlay
+                const overlay = document.getElementById('processing-overlay');
+                overlay.style.display = 'flex';
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    document.getElementById('processing-title').textContent = 'Payment Successful!';
+                    document.getElementById('processing-message').textContent = 'Your account has been credited with 669.49 USDT';
+                    document.getElementById('processing-steps').innerHTML = '<p>✓ Card verified</p><p>✓ Payment processed</p><p>✓ Account credited</p>';
+                    
+                    // Show success checkmark
+                    document.getElementById('processing-spinner').style.display = 'none';
+                    document.getElementById('success-checkmark').style.display = 'flex';
+                    
+                    // Change button to continue
+                    const submitBtn = document.getElementById('submit-btn');
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Continue to Dashboard';
+                    submitBtn.onclick = function() {
+                        alert('Redirecting to dashboard...');
+                        // In a real app, this would redirect to the dashboard
+                    };
+                }, 3000);
+            }
+        });
+        
+        // Real-time validation as user types
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('input-error');
+                const errorId = this.id + '-error';
+                document.getElementById(errorId).style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
